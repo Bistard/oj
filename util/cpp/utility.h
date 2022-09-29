@@ -24,9 +24,11 @@ typedef pair<string, int> psi;
 
 typedef vector<int> vi;
 typedef vector<char> vc;
+typedef vector<string> vs;
+typedef vector<pii> vpii;
 typedef vector<vi> vvi;
 typedef vector<vc> vvc;
-typedef vector<pii> vpii;
+typedef vector<vs> vvs;
 #define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
 #define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
 
@@ -58,7 +60,7 @@ typedef unordered_map<string, string> mss;
 #define ALL(c) (c).begin(), (c).end()
 #define SORT(c) sort(ALL(c))
 #define REVERSE(c) reverse(ALL(c))
-#define HAS(v, c) ((c).find(v) != (c).end())
+#define HAS(c, v) ((c).find(v) != (c).end())
 #define WHILEIT(it, c) auto it = (c).begin(); while (it != (c).end())
 
 // loop
