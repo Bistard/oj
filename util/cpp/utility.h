@@ -1,10 +1,41 @@
-#include <iostream>
-#include <map>
-#include <unordered_map>
-#include <set>
-#include <vector>
+#ifndef __oi_utility__
+#define __oi_utility__
 
-// #region 1
+#include <bits/stdc++.h> // Include every standard library
+
+#ifndef __constants__
+#define __constants__
+
+const double PI = acos(-1);
+const int dirx[8] = { -1, 0, 0, 1, -1, -1, 1, 1 };
+const int diry[8] = { 0, 1, -1, 0, -1, 1, -1, 1 };
+#endif
+
+#ifndef __marcos__
+#define __marcos__
+
+typedef std::pair<int, int> pii;
+typedef std::pair<std::string, std::string> pss;
+
+typedef std::vector<int> vi;
+typedef std::vector<vi> vvi;
+typedef std::vector<pii> vii;
+
+#define fi first
+#define se second
+#define mp make_pair
+#define pb push_back
+#define ALL(v) v.begin(), v.end()
+#define SORT(v) sort(ALL(v))
+#define REVERSE(v) reverse(ALL(v))
+#define FOR(a, b, c) for (int(a) = (b); (a) < (c); ++(a))
+#endif
+
+#ifndef __pretty_print__
+#define __pretty_print__
+
+#define BREAK std::cout << "===========" << std::endl
+#define VALUE(x) std::cout << "The value of " << #x << " is " << x << std::endl
 
 template<typename K, typename V>
 std::ostream &operator<<(std::ostream &out, const std::pair<K, V> &pair)
@@ -49,3 +80,6 @@ template<typename K, typename V>
 std::ostream &operator<<(std::ostream &out, const std::unordered_map<K, V> &map) {
     return __print_iterable(out, map);
 }
+#endif
+
+#endif
