@@ -9,7 +9,6 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include "../util/cpp/utility.h"
 
 using namespace std;
 
@@ -33,16 +32,14 @@ public:
         for (auto &pair : v) {
             const int num = pair.first;
             const int scope = pair.second;
-
+            
             if (v.find(num - 1) != v.end()) {
-                unions(v, num, num - 1);
+                unions(v, find(v, num), find(v, num - 1));
             }
 
             if (v.find(num + 1) != v.end()) {
-                unions(v, num, num + 1);
+                unions(v, find(v, num), find(v, num + 1));
             }
-
-            cout << "num: " << num << ", map: " << v << endl;
         }
 
         // maintains the size of each sequence.
@@ -50,17 +47,13 @@ public:
         unordered_map<int, int> s;
 
         for (auto &pair : v) {
-            const int scope = pair.second;
-            if (s.find(scope) == s.end()) {
-                s[scope] = 1;
+            const int root = find(v, pair.second);
+            if (s.find(root) == s.end()) {
+                s[root] = 1;
             } else {
-                s[scope] += 1;
-                if (s[scope] > maxlen) {
-                    maxlen = s[scope];
-                }
+                s[root] += 1;
+                maxlen = max(maxlen, s[root]);
             }
-
-            cout << s[scope] << endl;
         }
 
         return maxlen;
@@ -85,12 +78,3 @@ public:
     }
 };
 // @lc code=end
-
-int main() {
-    Solution a;
-    vector<int> v({1,0,-1});
-    set<int> s({-1, 0, 1});
-    cout << v << endl;
-    int res = a.longestConsecutive(v);
-    cout << res << endl;
-}
