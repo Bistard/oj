@@ -2,6 +2,7 @@
 #define __oi_utility__
 
 #include <bits/stdc++.h> // Include every standard library
+using namespace std;
 
 #ifndef __constants__
 #define __constants__
@@ -16,19 +17,33 @@ const int diry[8] = { 0, 1, -1, 0, -1, 1, -1, 1 };
 
 typedef std::pair<int, int> pii;
 typedef std::pair<std::string, std::string> pss;
+typedef std::pair<int, std::string> pis;
+typedef std::pair<std::string, int> psi;
 
 typedef std::vector<int> vi;
+typedef std::vector<char> vc;
 typedef std::vector<vi> vvi;
+typedef std::vector<vc> vvc;
 typedef std::vector<pii> vii;
 
 #define fi first
 #define se second
 #define mp make_pair
 #define pb push_back
+
 #define ALL(v) v.begin(), v.end()
 #define SORT(v) sort(ALL(v))
 #define REVERSE(v) reverse(ALL(v))
+
 #define FOR(a, b, c) for (int(a) = (b); (a) < (c); ++(a))
+#define FORE(a, b, c) for (int(a) = (b); (a) <= (c); ++(a))
+#define FORD(a, b, c) for (int(a) = (b); (a) >= (c); --(a))
+#define FOREACH(a, b) for (auto &(a) : (b))
+#define REPEAT(i, n) FOR(i, 0, n)
+#define REPEATN(i, n) FORE(i, 1, n)
+#define CLAMP(n, min, max) ((n <= min) ? min : (n >= max ? max : n))
+
+#define WHILEIT(it, container) while (it != container.end())
 #endif
 
 #ifndef __pretty_print__
@@ -49,7 +64,7 @@ static std::ostream &__print_iterable(std::ostream &out, const T &container)
 {
     auto it = container.begin();
     out << "{ " << *it++;
-    while (it != container.end()) {
+    WHILEIT(it, container) {
         out << ", " << *it++;
     }
     out << " }";
