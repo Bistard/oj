@@ -1,7 +1,7 @@
-#ifndef __oi_utility__
-#define __oi_utility__
+#ifndef __utility__
+#define __utility__
 
-#include <bits/stdc++.h> // Include every standard library
+#include <bits/stdc++.h> // Include every standard library(s)
 using namespace std;
 
 #ifndef __constants__
@@ -15,56 +15,81 @@ const int diry[8] = { 0, 1, -1, 0, -1, 1, -1, 1 };
 #ifndef __marcos__
 #define __marcos__
 
-typedef std::pair<int, int> pii;
-typedef std::pair<std::string, std::string> pss;
-typedef std::pair<int, std::string> pis;
-typedef std::pair<std::string, int> psi;
+typedef long long ll;
+typedef unsigned long long ull;
 
-typedef std::vector<int> vi;
-typedef std::vector<char> vc;
-typedef std::vector<vi> vvi;
-typedef std::vector<vc> vvc;
-typedef std::vector<pii> vii;
+typedef pair<int, int> pii;
+typedef pair<string, string> pss;
+typedef pair<int, string> pis;
+typedef pair<string, int> psi;
+
+typedef vector<int> vi;
+typedef vector<char> vc;
+typedef vector<vi> vvi;
+typedef vector<vc> vvc;
+typedef vector<pii> vii;
+
+#define umap unordered_map
+typedef unordered_map<int, int> mii;
+typedef unordered_map<int, string> mis;
+typedef unordered_map<string, int> msi;
+typedef unordered_map<string, string> mss;
 
 #define fi first
 #define se second
 #define mp make_pair
 #define pb push_back
 
-#define ALL(v) v.begin(), v.end()
-#define SORT(v) sort(ALL(v))
-#define REVERSE(v) reverse(ALL(v))
+// bit && number
+#define BIT(x, i) (x & (1 << i)) // select the bit at the position i of x. eg: BIT(5, 0) => 1; BIT(5, 2) => 4;
+#define LOWBIT(x) ((x) & ((x) ^ ((x) - 1))) // get the lowest bit of x
+#define SETMAX(a, b) (a) = max((a), (b))
+#define SETMIN(a, b) (a) = min((a), (b))
+#define CLAMP(n, min, max) ((n <= min) ? min : (n >= max ? max : n))
 
-#define FOR(a, b, c) for (int(a) = (b); (a) < (c); ++(a))
-#define FORE(a, b, c) for (int(a) = (b); (a) <= (c); ++(a))
-#define FORD(a, b, c) for (int(a) = (b); (a) >= (c); --(a))
+// boundary
+#define IN(i, l, r) ((l < i) && (i < r))
+#define INL(i, l, r) ((l <= i) && (i < r))
+#define INR(i, l, r) ((l < i) && (i <= r))
+#define INLR(i, l, r) ((l <= i) && (i <= r))
+
+// iterator
+#define ALL(c) (c).begin(), (c).end()
+#define SORT(c) sort(ALL(c))
+#define REVERSE(c) reverse(ALL(c))
+#define HAS(v, c) ((c).find(v) != (c).end())
+#define WHILEIT(it, c) auto it = (c).begin(); while (it != (c).end())
+
+// loop
+#define FOR(i, l, r) for (int (i) = (l); (i) < (r); ++(i))
+#define FORE(i, l, r) for (int (i) = (l); (i) <= (r); ++(i))
+#define FFOR(i, l, r) for (int (i) = (l); (i) > (r); --(i))
+#define FFORE(i, l, r) for (int (i) = (l); (i) >= (r); --(i))
 #define FOREACH(a, b) for (auto &(a) : (b))
 #define REPEAT(i, n) FOR(i, 0, n)
 #define REPEATN(i, n) FORE(i, 1, n)
-#define CLAMP(n, min, max) ((n <= min) ? min : (n >= max ? max : n))
-
-#define WHILEIT(it, container) while (it != container.end())
 #endif
 
 #ifndef __pretty_print__
 #define __pretty_print__
 
-#define BREAK std::cout << "===========" << std::endl
-#define VALUE(x) std::cout << "The value of " << #x << " is " << x << std::endl
+#define IOS ios_base::sync_with_stdio(0) //to synchronize the input of cin and scanf
+#define BREAK cout << "===========" << endl
+#define VALUE(x) cout << "The value of " << #x << " is " << x << endl
 
 template<typename K, typename V>
-std::ostream &operator<<(std::ostream &out, const std::pair<K, V> &pair)
+ostream &operator<<(ostream &out, const pair<K, V> &pair)
 {
     out << "<" << pair.first << ", " << pair.second << ">";
     return out;
 }
 
 template<typename T>
-static std::ostream &__print_iterable(std::ostream &out, const T &container) 
+static ostream &__print_iterable(ostream &out, const T &container) 
 {
     auto it = container.begin();
     out << "{ " << *it++;
-    WHILEIT(it, container) {
+    while (it != container.end()) {
         out << ", " << *it++;
     }
     out << " }";
@@ -72,27 +97,27 @@ static std::ostream &__print_iterable(std::ostream &out, const T &container)
 }
 
 template<typename T>
-std::ostream &operator<<(std::ostream &out, const std::vector<T> &vec) {
+ostream &operator<<(ostream &out, const vector<T> &vec) {
     return __print_iterable(out, vec);
 }
 
 template<typename T, size_t Size>
-std::ostream &operator<<(std::ostream &out, const std::array<T, Size> &arr) {
+ostream &operator<<(ostream &out, const array<T, Size> &arr) {
     return __print_iterable(out, arr);
 }
 
 template<typename T>
-std::ostream &operator<<(std::ostream &out, const std::set<T> &set) {
+ostream &operator<<(ostream &out, const set<T> &set) {
     return __print_iterable(out, set);
 }
 
 template<typename K, typename V>
-std::ostream &operator<<(std::ostream &out, const std::map<K, V> &map) {
+ostream &operator<<(ostream &out, const map<K, V> &map) {
     return __print_iterable(out, map);
 }
 
 template<typename K, typename V>
-std::ostream &operator<<(std::ostream &out, const std::unordered_map<K, V> &map) {
+ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
     return __print_iterable(out, map);
 }
 #endif
