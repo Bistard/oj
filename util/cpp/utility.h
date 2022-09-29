@@ -8,8 +8,7 @@ using namespace std;
 #define __constants__
 
 const double PI = acos(-1);
-const int dirx[8] = { -1, 0, 0, 1, -1, -1, 1, 1 };
-const int diry[8] = { 0, 1, -1, 0, -1, 1, -1, 1 };
+const int dirs[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 #endif
 
 #ifndef __marcos__
@@ -27,13 +26,15 @@ typedef vector<int> vi;
 typedef vector<char> vc;
 typedef vector<vi> vvi;
 typedef vector<vc> vvc;
-typedef vector<pii> vii;
+typedef vector<pii> vpii;
+#define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
+#define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
 
-#define umap unordered_map
 typedef unordered_map<int, int> mii;
 typedef unordered_map<int, string> mis;
 typedef unordered_map<string, int> msi;
 typedef unordered_map<string, string> mss;
+#define umap unordered_map
 
 #define fi first
 #define se second
@@ -48,10 +49,10 @@ typedef unordered_map<string, string> mss;
 #define CLAMP(n, min, max) ((n <= min) ? min : (n >= max ? max : n))
 
 // boundary
-#define IN(i, l, r) ((l < i) && (i < r))
-#define INL(i, l, r) ((l <= i) && (i < r))
-#define INR(i, l, r) ((l < i) && (i <= r))
-#define INLR(i, l, r) ((l <= i) && (i <= r))
+#define IN(i, l, r) (((l) < (i)) && ((i) < (r)))
+#define INL(i, l, r) (((l) <= (i)) && ((i) < (r)))
+#define INR(i, l, r) (((l) < (i)) && ((i) <= (r)))
+#define INLR(i, l, r) (((l) <= (i)) && ((i) <= (r)))
 
 // iterator
 #define ALL(c) (c).begin(), (c).end()
