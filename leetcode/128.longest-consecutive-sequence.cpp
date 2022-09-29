@@ -11,6 +11,7 @@
 #include <set>
 #include <unordered_map>
 #include <queue>
+#include "../util/cpp/utility.h"
 
 using namespace std;
 
@@ -24,7 +25,7 @@ public:
 
         // since each number may not be distinct, we use map instead of array.
         unordered_map<int, int> v;
-        
+
         for (int num : nums) {
             if (v.find(num) == v.end()) {
                 v[num] = num;
@@ -43,8 +44,8 @@ public:
                 unions(v, num, num + 1);
             }
 
-            cout << "num: " << num << endl;
-            // cout << 
+            cout << "num: " << num << " | ";
+            cout << v << endl;
         }
 
         // maintains the size of each sequence.
