@@ -1,54 +1,50 @@
 #include <iostream>
 #include <map>
-#include <hash_map>
 #include <unordered_map>
+#include <set>
 
-template<typename T, template<typename E, typename ALLOC=std::allocator<E>> class Container>
-std::ostream& operator<<(std::ostream &o, const Container<T> &container)
-{
-    typename Container<T>::const_iterator beg = container.begin();
-    o << "[";
-    while (beg != container.end()) o << " " << *beg++;
-    o << " ]";
-    return o;
-}
+// #region 1
 
 template<typename K, typename V>
 std::ostream &operator<<(std::ostream &out, const std::pair<K, V> &pair)
 {
-    out << "[" << pair.first << ", " << pair.second << "]" << ' ';
+    out << "<" << pair.first << ", " << pair.second << ">";
     return out;
 }
 
-template<typename K, typename V>
-std::ostream &operator<<(std::ostream &out, const std::map<K, V> &map)
+template<typename T>
+static std::ostream &__print_iterable(std::ostream &out, const T &container) 
 {
-    out << "{";
-    for (const std::pair<const K, V> &pair : map) {
-        out << pair << ' ';
+    auto it = container.begin();
+    out << "{ " << *it++;
+    while (it != container.end()) {
+        out << ", " << *it++;
     }
-    out << "}";
+    out << " }";
     return out;
 }
 
-template<typename K, typename V>
-std::ostream &operator<<(std::ostream &out, const std::hash_map<K, V> &map)
-{
-    out << "{";
-    for (const std::pair<const K, V> &pair : map) {
-        out << pair << ' ';
-    }
-    out << "}";
-    return out;
+template<typename T>
+std::ostream &operator<<(std::ostream &out, const std::vector<T> &vec) {
+    return __print_iterable(out, vec);
+}
+
+template<typename T, size_t Size>
+std::ostream &operator<<(std::ostream &out, const std::array<T, Size> &arr) {
+    return __print_iterable(out, arr);
+}
+
+template<typename T>
+std::ostream &operator<<(std::ostream &out, const std::set<T> &set) {
+    return __print_iterable(out, set);
 }
 
 template<typename K, typename V>
-std::ostream &operator<<(std::ostream &out, const std::unordered_map<K, V> &map)
-{
-    out << "{";
-    for (const std::pair<const K, V> &pair : map) {
-        out << pair << ' ';
-    }
-    out << "}";
-    return out;
+std::ostream &operator<<(std::ostream &out, const std::map<K, V> &map) {
+    return __print_iterable(out, map);
+}
+
+template<typename K, typename V>
+std::ostream &operator<<(std::ostream &out, const std::unordered_map<K, V> &map) {
+    return __print_iterable(out, map);
 }

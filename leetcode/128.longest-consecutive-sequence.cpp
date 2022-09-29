@@ -8,9 +8,7 @@
 
 #include <iostream>
 #include <vector>
-#include <set>
 #include <unordered_map>
-#include <queue>
 #include "../util/cpp/utility.h"
 
 using namespace std;
@@ -44,8 +42,7 @@ public:
                 unions(v, num, num + 1);
             }
 
-            cout << "num: " << num << " | ";
-            cout << v << endl;
+            cout << "num: " << num << ", map: " << v << endl;
         }
 
         // maintains the size of each sequence.
@@ -89,3 +86,11 @@ public:
 };
 // @lc code=end
 
+int main() {
+    Solution a;
+    vector<int> v({1,0,-1});
+    set<int> s({-1, 0, 1});
+    cout << v << endl;
+    int res = a.longestConsecutive(v);
+    cout << res << endl;
+}
