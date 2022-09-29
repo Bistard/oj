@@ -73,7 +73,7 @@ typedef unordered_map<string, string> mss;
 #ifndef __pretty_print__
 #define __pretty_print__
 
-#define IOS ios_base::sync_with_stdio(0) //to synchronize the input of cin and scanf
+#define IOS ios_base::sync_with_stdio(0) // to synchronize the input of cin and scanf
 #define BREAK cout << "===========" << endl
 #define VALUE(x) cout << "The value of " << #x << " is " << x << endl
 
