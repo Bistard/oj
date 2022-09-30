@@ -68,7 +68,7 @@ typedef unordered_map<string, string> mss;
 #define FORE(i, l, r) for (int (i) = (l); (i) <= (r); ++(i))
 #define FFOR(i, l, r) for (int (i) = (l); (i) > (r); --(i))
 #define FFORE(i, l, r) for (int (i) = (l); (i) >= (r); --(i))
-#define FOREACH(a, b) for (auto &(a) : (b))
+#define FOREACH(v, c) for (auto &(v) : (c))
 #define REPEAT(i, n) FOR(i, 0, n)
 #define REPEATN(i, n) FORE(i, 1, n)
 #endif
