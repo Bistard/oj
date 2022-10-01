@@ -8,7 +8,7 @@ using namespace std;
 #define __constants__
 
 const double PI = acos(-1);
-const int dirs[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+const int directions[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 #endif
 
 #ifndef __marcos__
@@ -24,10 +24,12 @@ typedef pair<string, int> psi;
 
 typedef vector<int> vi;
 typedef vector<char> vc;
+typedef vector<bool> vb;
 typedef vector<string> vs;
 typedef vector<pii> vpii;
 typedef vector<vi> vvi;
 typedef vector<vc> vvc;
+typedef vector<vb> vvb;
 typedef vector<vs> vvs;
 #define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
 #define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
@@ -123,6 +125,38 @@ template<typename K, typename V>
 ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
     return __print_iterable(out, map);
 }
+#endif
+
+#ifndef __data_structure__
+#define __data_structure__
+
+class UnionFind {
+
+public:
+    UnionFind(int n): _parents {n} {
+        REPEAT(i, n) {
+            _parents[i] = i;
+        }
+    }
+
+    int find(int x) {
+        if (_parents[x] != x) {
+            _parents[x] = find(_parents[x]);
+        }
+        return _parents[x];
+    }
+
+    void unions(int x, int y) {
+        _rootx = find(x);
+        _rooty = find(y);
+        _parents[_rootx] = _rooty;
+    }
+
+private:
+    vi _parents;
+    int _rootx, _rooty;
+};
+
 #endif
 
 #endif
