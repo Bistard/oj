@@ -35,6 +35,7 @@ typedef vector<vs> vvs;
 #define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
 
 typedef unordered_map<int, int> mii;
+typedef unordered_map<char, char> mcc;
 typedef unordered_map<int, string> mis;
 typedef unordered_map<string, int> msi;
 typedef unordered_map<string, string> mss;
@@ -133,7 +134,7 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 class UnionFind {
 
 public:
-    UnionFind(int n): _parents {n} {
+    UnionFind(int n): _parents { vi(n) } {
         REPEAT(i, n) {
             _parents[i] = i;
         }
@@ -152,7 +153,7 @@ public:
         _parents[_rootx] = _rooty;
     }
 
-private:
+public:
     vi _parents;
     int _rootx, _rooty;
 };
