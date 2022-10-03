@@ -52,6 +52,7 @@ typedef unordered_map<string, string> mss;
 #define SETMAX(a, b) (a) = max((a), (b))
 #define SETMIN(a, b) (a) = min((a), (b))
 #define CLAMP(n, min, max) ((n <= min) ? min : (n >= max ? max : n))
+#define SQ(n) ((n) * (n))
 
 // boundary
 #define IN(i, l, r) (((l) < (i)) && ((i) < (r)))
