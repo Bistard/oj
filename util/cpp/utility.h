@@ -33,6 +33,7 @@ typedef vector<vb> vvb;
 typedef vector<vs> vvs;
 #define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
 #define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
+#define asciimap(map) char map[128] = { 0 };
 
 typedef unordered_map<int, int> mii;
 typedef unordered_map<char, char> mcc;
@@ -82,7 +83,7 @@ typedef unordered_map<string, string> mss;
 
 #define IOS ios_base::sync_with_stdio(0) // to synchronize the input of cin and scanf
 #define BREAK cout << "===========" << endl
-#define VALUE(x) cout << "The value of " << #x << " is " << x << endl
+#define VALUE(x) cout << "The value of \"" << #x << "\" is: " << x << endl
 
 template<typename K, typename V>
 ostream &operator<<(ostream &out, const pair<K, V> &pair)
