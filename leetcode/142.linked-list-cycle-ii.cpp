@@ -140,12 +140,6 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 #endif
 
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
 // tag: constant space O(1), time complexity O(n)
 class Solution {
 public:
