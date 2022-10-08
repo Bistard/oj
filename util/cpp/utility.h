@@ -34,9 +34,7 @@ typedef vector<vi> vvi;
 typedef vector<vc> vvc;
 typedef vector<vb> vvb;
 typedef vector<vs> vvs;
-#define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
-#define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
-#define charmap(map, size, fill) char map[size] = { fill };
+
 
 typedef unordered_map<int, int> mii;
 typedef unordered_map<char, char> mcc;
@@ -45,11 +43,6 @@ typedef unordered_map<string, int> msi;
 typedef unordered_map<string, string> mss;
 #define umap unordered_map
 
-#define fi first
-#define se second
-#define mp make_pair
-#define pb push_back
-
 // bit && number
 #define BIT(x, i) (x & (1 << i)) // select the bit at the position i of x. eg: BIT(5, 0) => 1; BIT(5, 2) => 4;
 #define LOWBIT(x) ((x) & ((x) ^ ((x) - 1))) // get the lowest bit of x
@@ -57,6 +50,15 @@ typedef unordered_map<string, string> mss;
 #define SETMIN(a, b) (a) = min((a), (b))
 #define CLAMP(n, min, max) ((n <= min) ? min : (n >= max ? max : n))
 #define SQ(n) ((n) * (n))
+
+// array
+#define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
+#define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
+#define charmap(map, size, fill) char map[size] = { fill };
+#define fi first
+#define se second
+#define mp make_pair
+#define pb push_back
 
 // boundary
 #define IN(i, l, r) (((l) < (i)) && ((i) < (r)))
@@ -123,23 +125,55 @@ ostream &operator<<(ostream &out, const set<T> &set) {
 }
 
 template<typename T>
-ostream &operator<<(ostream &out, const stack<T> &stack) {
-    return __print_iterable(out, stack);
+ostream &operator<<(ostream &out, const stack<T> &s) {
+    out << "[";
+    
+    if (!s.empty()) {
+        stack<T> copy = s;
+        out << copy.top();
+        copy.pop();
+
+        while (!copy.empty()) {
+            out << ", ";
+            auto top = copy.top();
+            out << top;
+            copy.pop();
+        }
+    }
+
+    out << "]";
+    return out;
 }
 
 template<typename T>
-ostream &operator<<(ostream &out, const queue<T> &queue) {
-    return __print_iterable(out, queue);
+ostream &operator<<(ostream &out, const queue<T> &q) {
+    out << "[";
+    
+    if (!q.empty()) {
+        queue<T> copy = q;
+        out << copy.front();
+        copy.pop();
+
+        while (!copy.empty()) {
+            out << ", ";
+            auto front = copy.front();
+            out << front;
+            copy.pop();
+        }
+    }
+
+    out << "]";
+    return out;
 }
 
 template<typename T>
 ostream &operator<<(ostream &out, const priority_queue<T> &pq) {
-    return __print_iterable(out, pq);
+    return __print_iterable(out, pq); // BUG
 }
 
 template<typename T>
 ostream &operator<<(ostream &out, const deque<T> &deq) {
-    return __print_iterable(out, deq);
+    return __print_iterable(out, deq); // BUG
 }
 
 template<typename K, typename V>
