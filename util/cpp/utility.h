@@ -9,6 +9,7 @@ using namespace std;
 
 const double PI = acos(-1);
 const int directions[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+const int directions8[8][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};
 #endif
 
 #ifndef __marcos__
