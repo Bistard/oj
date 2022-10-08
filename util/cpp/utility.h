@@ -22,6 +22,8 @@ typedef pair<string, string> pss;
 typedef pair<int, string> pis;
 typedef pair<string, int> psi;
 
+typedef set<int> si;
+
 typedef vector<int> vi;
 typedef vector<char> vc;
 typedef vector<bool> vb;
@@ -33,7 +35,7 @@ typedef vector<vb> vvb;
 typedef vector<vs> vvs;
 #define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
 #define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
-#define asciimap(map) char map[128] = { 0 };
+#define charmap(map, size, fill) char map[size] = { fill };
 
 typedef unordered_map<int, int> mii;
 typedef unordered_map<char, char> mcc;
@@ -93,7 +95,7 @@ ostream &operator<<(ostream &out, const pair<K, V> &pair)
 }
 
 template<typename T>
-static ostream &__print_iterable(ostream &out, const T &container) 
+static inline ostream &__print_iterable(ostream &out, const T &container) 
 {
     auto it = container.begin();
     out << "{ " << *it++;
@@ -117,6 +119,26 @@ ostream &operator<<(ostream &out, const array<T, Size> &arr) {
 template<typename T>
 ostream &operator<<(ostream &out, const set<T> &set) {
     return __print_iterable(out, set);
+}
+
+template<typename T>
+ostream &operator<<(ostream &out, const stack<T> &stack) {
+    return __print_iterable(out, stack);
+}
+
+template<typename T>
+ostream &operator<<(ostream &out, const queue<T> &queue) {
+    return __print_iterable(out, queue);
+}
+
+template<typename T>
+ostream &operator<<(ostream &out, const priority_queue<T> &pq) {
+    return __print_iterable(out, pq);
+}
+
+template<typename T>
+ostream &operator<<(ostream &out, const deque<T> &deq) {
+    return __print_iterable(out, deq);
 }
 
 template<typename K, typename V>
