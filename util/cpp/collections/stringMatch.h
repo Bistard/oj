@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./marcos.h"
+#include "../utility.h"
 
 class StringMatchByKmp {
 public:
