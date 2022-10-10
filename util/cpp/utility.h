@@ -35,7 +35,6 @@ typedef vector<vc> vvc;
 typedef vector<vb> vvb;
 typedef vector<vs> vvs;
 
-
 typedef unordered_map<int, int> mii;
 typedef unordered_map<char, char> mcc;
 typedef unordered_map<int, string> mis;
@@ -54,6 +53,7 @@ typedef unordered_map<string, string> mss;
 // array
 #define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
 #define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
+#define arr2db(v, n, m, fill) vvb v((n), vb((m), (fill)))
 #define charmap(map, size, fill) char map[size] = { fill };
 #define fi first
 #define se second
