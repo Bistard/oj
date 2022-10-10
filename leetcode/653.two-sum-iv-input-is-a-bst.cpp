@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=1367 lang=cpp
+ * @lc app=leetcode id=653 lang=cpp
  *
- * [1367] Linked List in Binary Tree
+ * [653] Two Sum IV - Input is a BST
  */
 
 // @lc code=start
@@ -96,7 +96,7 @@ typedef unordered_map<string, string> mss;
 
 #define IOS ios_base::sync_with_stdio(0) // to synchronize the input of cin and scanf
 #define BREAK cout << "===========" << endl
-#define VALUE(x) cout << "The value of \"" << #x << "\" is: " << (x) << endl
+#define VALUE(x) cout << "The value of \"" << #x << "\" is: " << x << endl
 
 template<typename K, typename V>
 ostream &operator<<(ostream &out, const pair<K, V> &pair)
@@ -197,136 +197,65 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 #endif
 
-// tag: KMP, time - O(N + L), space - O(L + H)
-class Solution {
+// tag: time - O(n), space - O(h)
+class BSTIterator {
+    stack<TreeNode *> s;
+    TreeNode *node;
+    bool forward;
+    int cur;
 public:
-    bool isSubPath(ListNode *head, TreeNode *root) {
-        if (!head) {
-            return true;
-        }
-        
-        if (!root) {
-            return false;
-        }
-
-        vi arr = listToArr(head);
-        vi lps = createLPS(arr);
-        return kmpOnBinaryTreeDFS(root, lps, arr, 0);
-    }
-
-    // O(n)
-    vi listToArr(ListNode *node) {
-        vi arr;
-
-        while (node) {
-            arr.push_back(node->val);
-            node = node->next;
-        }
-
-        return arr;
-    }
-
-    // O(n)
-    vi createLPS(vi arr) {
-        const int n = arr.size();
-        
-        vi lps(n, 0);
-        int state = 0;
-        int i = 1;
-
-        while (i < n) {
-            if (arr[i] == arr[state]) {
-                lps[i] = state + 1;
-                ++i;
-                ++state;
-            } else {
-                if (state == 0) {
-                    lps[i] = 0;
-                    ++i;
-                } else {
-                    state = lps[state - 1];
-                }
+    BSTIterator(TreeNode *root, bool forward) : node(root), forward(forward) { (*this)++; };
+    int operator*() { return cur; }
+    void operator++(int) {
+        while (node || !s.empty()) {
+            if (node) {
+                s.push(node);
+                node = forward ? node->left : node->right;
+            }
+            else {
+                node = s.top();
+                s.pop();
+                cur = node->val;
+                node = forward ? node->right : node->left;
+                break;
             }
         }
-
-        return lps;
     }
-
-    bool kmpOnBinaryTreeDFS(TreeNode *node, const vi &lps, const vi &arr, int state) {
-        if (state == lps.size()) {
-            return true;
+};
+class Solution {
+public:
+    bool findTarget(TreeNode *root, int k) {
+        if (!root) return false;
+        BSTIterator l(root, true);
+        BSTIterator r(root, false);
+        while (*l < *r) {
+            if (*l + *r == k) return true;
+            if (*l + *r < k) l++;
+            else r++;
         }
-
-        if (!node) {
-            return false;
-        }
-        
-        while (state > 0 && node->val != arr[state]) {
-            state = lps[state - 1];
-        }
-        
-        if (node->val == arr[state]) {
-            ++state;
-        }
-        
-        return kmpOnBinaryTreeDFS(node->left, lps, arr, state) || kmpOnBinaryTreeDFS(node->right, lps, arr, state);
+        return false;
     }
 };
 
-// tag: time - O(N * min(L,H)), space - O(H)
-class bruteDFS {
+// tag: time - O(n), space - O(n)
+class OnSpace {
 public:
-    bool isSubPath(ListNode *head, TreeNode *root) {
-        if (!head) {
-            return true;
-        }
-        
-        if (!root) {
+    bool findTarget(TreeNode* root, int k) {
+        si need;
+        return dfs(need, root, k);
+    }
+
+    bool dfs(si &need, TreeNode *node, int target) {
+        if (!node) {
             return false;
         }
 
-        return dfs(root, head);
-    }
-
-    bool dfs(TreeNode *tnode, ListNode *head) {
-
-        if (dfsList(tnode, head)) {
+        if (HAS(need, target - node->val)) {
             return true;
         }
 
-        if (tnode->left && dfs(tnode->left, head)) {
-            return true;
-        }
-
-        if (tnode->right && dfs(tnode->right, head)) {
-            return true;
-        }
-        
-        return false;
-    }
-
-    bool dfsList(TreeNode *tnode, ListNode *lnode) {
-        if (!lnode) {
-            return true;
-        }
-        
-        if (tnode->val != lnode->val) {
-            return false;
-        }
-
-        if (!tnode->left && !tnode->right && !lnode->next) {
-            return true;
-        }
-
-        if (tnode->left && dfsList(tnode->left, lnode->next)) {
-            return true;
-        }
-
-        if (tnode->right && dfsList(tnode->right, lnode->next)) {
-            return true;
-        }
-        
-        return false;
+        need.insert(node->val);
+        return dfs(need, node->left, target) || dfs(need, node->right, target);
     }
 };
 // @lc code=end
