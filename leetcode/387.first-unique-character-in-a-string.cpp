@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=36 lang=cpp
+ * @lc app=leetcode id=387 lang=cpp
  *
- * [36] Valid Sudoku
+ * [387] First Unique Character in a String
  */
 
 // @lc code=start
@@ -197,31 +197,35 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 #endif
 
-// tag: time - O(mn), space - using set instead of array of size 10.
+// tag: O(n)
 class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
-        arr2db(row, 9, 9, false);
-        arr2db(col, 9, 9, false);
-        arr2db(grid, 9, 9, false);
+    int firstUniqChar(string s) {
         
-        REPEAT(i, 9) {
-            REPEAT(j, 9) {
-                if (board[i][j] == '.') {
-                    continue;
-                }
-                int num = board[i][j] - '0' - 1;
-                if (row[i][num] || col[j][num] || grid[i / 3 * 3 + j / 3][num]) {
-                    return false;
-                }
+        vi firstAppear(26, 0);
+        vi ifUnique(26, 0);
 
-                row[i][num] = true;
-                col[j][num] = true;
-                grid[i / 3 * 3 + j / 3][num] = true;
+        REPEAT(i, s.length()) {
+            char c = s[i] - 'a';
+            if (ifUnique[c] == 0) {
+                ifUnique[c] = 1;
+                firstAppear[c] = i;
+            } else if (ifUnique[c] == 1) {
+                ifUnique[c] = 2;
             }
         }
 
-        return true;
+        VALUE(firstAppear);
+        VALUE(ifUnique);
+        
+        int index = 1000000;
+        REPEAT(i, 26) {
+            if (ifUnique[i] == 1) {
+                SETMIN(index, firstAppear[i]);
+            }
+        }
+
+        return index == 1000000 ? -1 : index;
     }
 };
 // @lc code=end

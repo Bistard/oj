@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=36 lang=cpp
+ * @lc app=leetcode id=141 lang=cpp
  *
- * [36] Valid Sudoku
+ * [141] Linked List Cycle
  */
 
 // @lc code=start
@@ -197,31 +197,45 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 #endif
 
-// tag: time - O(mn), space - using set instead of array of size 10.
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+// tag: fast-slow pointers
 class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
-        arr2db(row, 9, 9, false);
-        arr2db(col, 9, 9, false);
-        arr2db(grid, 9, 9, false);
-        
-        REPEAT(i, 9) {
-            REPEAT(j, 9) {
-                if (board[i][j] == '.') {
-                    continue;
-                }
-                int num = board[i][j] - '0' - 1;
-                if (row[i][num] || col[j][num] || grid[i / 3 * 3 + j / 3][num]) {
-                    return false;
-                }
-
-                row[i][num] = true;
-                col[j][num] = true;
-                grid[i / 3 * 3 + j / 3][num] = true;
-            }
+    bool hasCycle(ListNode *head) {
+        if (!head || !head->next) {
+            return false;
         }
 
-        return true;
+        ListNode *ptr1 = head, *ptr2 = head;
+        ListNode *entry = head;
+        while (true) {
+            // step forward once
+            ptr1 = ptr1->next;
+
+            // step forward twice
+            REPEAT(i, 2) {
+                ptr2 = ptr2->next;
+                if (!ptr2) {
+                    return false;
+                }
+            }
+
+            // find a cycle
+            if (ptr2 == ptr1) {
+                while (entry != ptr1) {
+                    entry = entry->next;
+                    ptr1 = ptr1->next;
+                }
+                return entry;
+            }
+        }
     }
 };
 // @lc code=end

@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=36 lang=cpp
+ * @lc app=leetcode id=74 lang=cpp
  *
- * [36] Valid Sudoku
+ * [74] Search a 2D Matrix
  */
 
 // @lc code=start
@@ -197,31 +197,43 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 #endif
 
-// tag: time - O(mn), space - using set instead of array of size 10.
+// tag O(n + m) - binary search
 class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
-        arr2db(row, 9, 9, false);
-        arr2db(col, 9, 9, false);
-        arr2db(grid, 9, 9, false);
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        const int n = matrix.size();
+        int i = 0;
         
-        REPEAT(i, 9) {
-            REPEAT(j, 9) {
-                if (board[i][j] == '.') {
-                    continue;
-                }
-                int num = board[i][j] - '0' - 1;
-                if (row[i][num] || col[j][num] || grid[i / 3 * 3 + j / 3][num]) {
-                    return false;
-                }
-
-                row[i][num] = true;
-                col[j][num] = true;
-                grid[i / 3 * 3 + j / 3][num] = true;
+        while (i < n) {
+            if (i == n - 1 || matrix[i + 1][0] > target) {
+                return binarySearchOnRow(matrix[i], target);
+            } else {
+                ++i;
             }
         }
+        
+        return false;
+    }
 
-        return true;
+    bool binarySearchOnRow(vi &nums, int target) {
+        int l = -1, r = nums.size();
+        int m;
+
+        while (l + 1 != r) {
+            m = l + (r - l) / 2;
+
+            if (nums[m] == target) {
+                return true;
+            }
+
+            if (nums[m] < target) {
+                l = m;
+            } else {
+                r = m;
+            }
+        }
+        
+        return false;
     }
 };
 // @lc code=end

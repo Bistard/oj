@@ -8,6 +8,7 @@
 // The API isBadVersion is defined for you.
 // bool isBadVersion(int version);
 
+// tag: Binary Search
 class Solution {
 public:
     int firstBadVersion(int n) {

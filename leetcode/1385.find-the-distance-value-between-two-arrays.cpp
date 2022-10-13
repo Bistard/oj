@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=36 lang=cpp
+ * @lc app=leetcode id=1385 lang=cpp
  *
- * [36] Valid Sudoku
+ * [1385] Find the Distance Value Between Two Arrays
  */
 
 // @lc code=start
@@ -197,31 +197,24 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 #endif
 
-// tag: time - O(mn), space - using set instead of array of size 10.
 class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
-        arr2db(row, 9, 9, false);
-        arr2db(col, 9, 9, false);
-        arr2db(grid, 9, 9, false);
-        
-        REPEAT(i, 9) {
-            REPEAT(j, 9) {
-                if (board[i][j] == '.') {
-                    continue;
-                }
-                int num = board[i][j] - '0' - 1;
-                if (row[i][num] || col[j][num] || grid[i / 3 * 3 + j / 3][num]) {
-                    return false;
-                }
+    int findTheDistanceValue(vi &arr1, vi &arr2, int d) {
+        int cnt = 0;
 
-                row[i][num] = true;
-                col[j][num] = true;
-                grid[i / 3 * 3 + j / 3][num] = true;
+        FOREACH(num1, arr1) {
+            bool work = true;
+            FOREACH(num2, arr2) {
+                if (abs(num1 - num2) <= d) {
+                    work = false;
+                    break;
+                }
             }
+
+            if (work) ++cnt;
         }
 
-        return true;
+        return cnt;
     }
 };
 // @lc code=end

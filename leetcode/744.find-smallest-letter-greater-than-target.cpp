@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=36 lang=cpp
+ * @lc app=leetcode id=744 lang=cpp
  *
- * [36] Valid Sudoku
+ * [744] Find Smallest Letter Greater Than Target
  */
 
 // @lc code=start
@@ -197,31 +197,42 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 #endif
 
-// tag: time - O(mn), space - using set instead of array of size 10.
+// tag: Binary Search
 class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
-        arr2db(row, 9, 9, false);
-        arr2db(col, 9, 9, false);
-        arr2db(grid, 9, 9, false);
+    char nextGreatestLetter(vector<char>& letters, char target) {
         
-        REPEAT(i, 9) {
-            REPEAT(j, 9) {
-                if (board[i][j] == '.') {
-                    continue;
-                }
-                int num = board[i][j] - '0' - 1;
-                if (row[i][num] || col[j][num] || grid[i / 3 * 3 + j / 3][num]) {
-                    return false;
-                }
+        int l = -1, r = letters.size();
+        int m;
 
-                row[i][num] = true;
-                col[j][num] = true;
-                grid[i / 3 * 3 + j / 3][num] = true;
+        while (l + 1 != r) {
+            m = l + (r - l) / 2;
+            
+            if (letters[m] > target && m > 0 && letters[m - 1] <= target) {
+                return letters[m];
+            }
+
+            if (letters[m] > target) {
+                r = m;
+            } else {
+                l = m;
             }
         }
+        
+        return letters[0]; // never reach
+    }
+};
 
-        return true;
+// tag: O(n)
+class BruteForce {
+public:
+    char nextGreatestLetter(vector<char>& letters, char target) {
+        FOREACH(c, letters) {
+            if (c > target) {
+                return c;
+            }
+        }
+        return letters[0];
     }
 };
 // @lc code=end
