@@ -49,6 +49,8 @@ typedef unordered_map<string, string> mss;
 #define SETMIN(a, b) (a) = min((a), (b))
 #define CLAMP(n, min, max) ((n <= min) ? min : (n >= max ? max : n))
 #define SQ(n) ((n) * (n))
+#define INTMAX __INT_MAX__
+#define INTMIN (-INTMAX - 1)
 
 // array
 #define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
@@ -112,11 +114,6 @@ static inline ostream &__print_iterable(ostream &out, const T &container)
 template<typename T>
 ostream &operator<<(ostream &out, const vector<T> &vec) {
     return __print_iterable(out, vec);
-}
-
-template<typename T>
-ostream &operator<<(ostream &out, const list<T> &list) {
-    return __print_iterable(out, list);
 }
 
 template<typename T, size_t Size>
