@@ -114,6 +114,11 @@ ostream &operator<<(ostream &out, const vector<T> &vec) {
     return __print_iterable(out, vec);
 }
 
+template<typename T>
+ostream &operator<<(ostream &out, const list<T> &list) {
+    return __print_iterable(out, list);
+}
+
 template<typename T, size_t Size>
 ostream &operator<<(ostream &out, const array<T, Size> &arr) {
     return __print_iterable(out, arr);
