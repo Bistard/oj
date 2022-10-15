@@ -16,6 +16,8 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+// tag: DFS (recursive)
 class Solution {
 private:
     int target;
