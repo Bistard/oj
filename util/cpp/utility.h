@@ -51,6 +51,7 @@ typedef unordered_map<string, string> mss;
 #define SQ(n) ((n) * (n))
 #define INTMAX __INT_MAX__
 #define INTMIN (-INTMAX - 1)
+#define SUM(arr) (reduce(arr.begin(), arr.end()))
 
 // array
 #define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
