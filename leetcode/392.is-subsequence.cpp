@@ -172,6 +172,7 @@ public:
 
 #endif
 
+// tag: two pointers; time: O(n); space: O(1);
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
