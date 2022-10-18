@@ -190,4 +190,14 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 }
 #endif
 
+#ifndef __gadgets__
+#define __gadgets__
+
+template<typename T>
+struct CompareFn {
+    virtual bool operator() (const T &a, const T &b);
+};
+
+#endif
+
 #endif
