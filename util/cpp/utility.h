@@ -23,7 +23,8 @@ typedef pair<string, string> pss;
 typedef pair<int, string> pis;
 typedef pair<string, int> psi;
 
-typedef set<int> si;
+typedef unordered_set<int> si;
+#define uset unordered_set
 
 typedef vector<int> vi;
 typedef vector<char> vc;
@@ -51,7 +52,6 @@ typedef unordered_map<string, string> mss;
 #define SQ(n) ((n) * (n))
 #define INTMAX __INT_MAX__
 #define INTMIN (-INTMAX - 1)
-#define SUM(arr) (reduce(arr.begin(), arr.end()))
 
 // array
 #define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
@@ -84,6 +84,10 @@ typedef unordered_map<string, string> mss;
 #define FOREACH(v, c) for (auto &(v) : (c))
 #define REPEAT(i, n) FOR(i, 0, n)
 #define REPEATN(i, n) FORE(i, 1, n)
+
+// container
+#define SUM(arr) (reduce(arr.begin(), arr.end()))
+#define TOSET(s, c) uset s(c.begin(), c.end())
 #endif
 
 #ifndef __pretty_print__
