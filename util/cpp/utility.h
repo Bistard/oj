@@ -44,6 +44,7 @@ typedef unordered_map<string, string> mss;
 #define umap unordered_map
 
 // bit && number
+#define MODULO (1e9 + 7)
 #define BIT(x, i) (x & (1 << i)) // select the bit at the position i of x. eg: BIT(5, 0) => 1; BIT(5, 2) => 4;
 #define LOWBIT(x) ((x) & ((x) ^ ((x) - 1))) // get the lowest bit of x
 #define SETMAX(a, b) (a) = max((a), (b))
@@ -199,7 +200,7 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 template<typename T>
 struct CompareFn {
-    virtual bool operator() (const T &a, const T &b);
+    virtual bool operator() (const T &a, const T &b); // returns false if a is first and b is second.
 };
 
 #endif
