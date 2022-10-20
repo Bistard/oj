@@ -58,7 +58,7 @@ typedef unordered_map<string, string> mss;
 #define arr2d(v, n, m, fill) vvi v((n), vi((m), (fill)))
 #define arr2dc(v, n, m, fill) vvc v((n), vc((m), (fill)))
 #define arr2db(v, n, m, fill) vvb v((n), vb((m), (fill)))
-#define charmap(map, size, fill) char map[size] = { fill };
+#define charmap(map, size, fill) char map[size] = { fill }
 #define fi first
 #define se second
 #define mp make_pair
@@ -76,6 +76,8 @@ typedef unordered_map<string, string> mss;
 #define REVERSE(c) reverse(ALL(c))
 #define HAS(c, v) ((c).find(v) != (c).end())
 #define WHILEIT(it, c) auto it = (c).begin(); while (it != (c).end())
+#define SUM(c) (reduce(ALL(c)))
+#define TOSET(s, c) set s(ALL(c))
 
 // loop
 #define FOR(i, l, r) for (int (i) = (l); (i) < (r); ++(i))
@@ -86,9 +88,6 @@ typedef unordered_map<string, string> mss;
 #define REPEAT(i, n) FOR(i, 0, n)
 #define REPEATN(i, n) FORE(i, 1, n)
 
-// container
-#define SUM(arr) (reduce(arr.begin(), arr.end()))
-#define TOSET(s, c) uset s(c.begin(), c.end())
 #endif
 
 #ifndef __pretty_print__
