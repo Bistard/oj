@@ -35,6 +35,7 @@ typedef vector<vi> vvi;
 typedef vector<vc> vvc;
 typedef vector<vb> vvb;
 typedef vector<vs> vvs;
+#define vec vector
 
 typedef unordered_map<int, int> mii;
 typedef unordered_map<char, char> mcc;
@@ -78,6 +79,7 @@ typedef unordered_map<string, string> mss;
 #define WHILEIT(it, c) auto it = (c).begin(); while (it != (c).end())
 #define SUM(c) (reduce(ALL(c)))
 #define TOSET(s, c) set s(ALL(c))
+#define TOUSET(s, c) uset s(ALL(c))
 
 // loop
 #define FOR(i, l, r) for (int (i) = (l); (i) < (r); ++(i))
