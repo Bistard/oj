@@ -1,3 +1,10 @@
+/*
+ * @lc app=leetcode id=2442 lang=cpp
+ *
+ * [2442] Count Number of Distinct Integers After Reverse Operations
+ */
+
+// @lc code=start
 #ifndef __utility__
 #define __utility__
 
@@ -229,3 +236,5 @@ public:
         return reversed;
     }
 };
+// @lc code=end
+

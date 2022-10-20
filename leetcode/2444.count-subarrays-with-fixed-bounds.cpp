@@ -1,3 +1,10 @@
+/*
+ * @lc app=leetcode id=2444 lang=cpp
+ *
+ * [2444] Count Subarrays With Fixed Bounds
+ */
+
+// @lc code=start
 #ifndef __utility__
 #define __utility__
 
@@ -265,3 +272,5 @@ public:
         return cnt;
     }
 };
+
+// @lc code=end
