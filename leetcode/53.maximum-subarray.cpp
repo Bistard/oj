@@ -171,6 +171,7 @@ public:
 
 #endif
 
+// tag: prefix sum; time: O(n); space: O(1);
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
