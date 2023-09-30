@@ -217,6 +217,32 @@ struct CompareFn {
 
 // @lc code=start
 
+class Solution20230929 {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        const int len = nums.size();
+        vi ans(len, 0);
+
+        int prod = 1;
+        FOR(i, 0, len) {
+            prod *= nums[i];
+            ans[i] = prod;
+        }
+
+        prod = 1;
+        FFORE(i, len - 1, 0) {
+            if (i == 0) {
+                ans[0] = prod;
+            } else {
+                ans[i] = ans[i - 1] * prod;
+            }
+            prod *= nums[i];
+        }
+
+        return ans;
+    }
+};
+
 // tag: DP, array
 class Solution {
 public:
