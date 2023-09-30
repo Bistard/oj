@@ -78,6 +78,8 @@ typedef unordered_map<string, string> mss;
 #define HAS(c, v) ((c).find(v) != (c).end())
 #define WHILEIT(it, c) auto it = (c).begin(); while (it != (c).end())
 #define SUM(c) (reduce(ALL(c)))
+#define MAX(c) (max_element(ALL(c)))
+#define MIN(c) (min_element(ALL(c)))
 #define TOSET(s, c) set s(ALL(c))
 #define TOUSET(s, c) uset s(ALL(c))
 
