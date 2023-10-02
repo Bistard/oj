@@ -39,6 +39,7 @@ typedef vector<vs> vvs;
 
 typedef unordered_map<int, int> mii;
 typedef unordered_map<char, char> mcc;
+typedef unordered_map<char, int> mci;
 typedef unordered_map<int, string> mis;
 typedef unordered_map<string, int> msi;
 typedef unordered_map<string, string> mss;
@@ -82,6 +83,7 @@ typedef unordered_map<string, string> mss;
 #define MIN(c) (min_element(ALL(c)))
 #define TOSET(s, c) set s(ALL(c))
 #define TOUSET(s, c) uset s(ALL(c))
+#define FROMSET(v, s) vi v(s.begin(), s.end())
 
 // loop
 #define FOR(i, l, r) for (int (i) = (l); (i) < (r); ++(i))

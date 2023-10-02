@@ -54,3 +54,58 @@ generateTreeFromSegmentTree(vector<int> arr) {
 
     return aux(arr, -1, arr.size());
 }
+
+TreeNode* 
+buildTree(const vector<int>& arr) {
+    
+    // assuming -1 represents null
+    if (arr.empty() || arr[0] == -1) {
+        return nullptr;
+    }
+
+    TreeNode* root = new TreeNode(arr[0]);
+    queue<TreeNode*> q;
+    q.push(root);
+
+    int i = 1;
+    while (i < arr.size()) {
+        TreeNode* current = q.front();
+        q.pop();
+
+        if (arr[i] != -1) {
+            current->left = new TreeNode(arr[i]);
+            q.push(current->left);
+        }
+        i++;
+
+        if (i < arr.size() && arr[i] != -1) {
+            current->right = new TreeNode(arr[i]);
+            q.push(current->right);
+        }
+        i++;
+    }
+
+    return root;
+}
+
+void
+bfsTemplate(TreeNode *root) {
+    queue<TreeNode *> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        const int levelSize = q.size();
+        
+        // iterate level
+        for (int i = 0; i < levelSize; i++) {
+            TreeNode *node = q.front();
+
+            q.pop();
+
+            if (node->left) q.push(node->left);
+            if (node->right) q.push(node->right);
+        }
+
+        // after every level
+    }
+}
