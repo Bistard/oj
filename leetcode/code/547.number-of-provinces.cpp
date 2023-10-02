@@ -135,6 +135,60 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 #endif
 
+class UnionFind {
+public:
+
+    // initialize a total of n sets, every set contains an element.
+    UnionFind(int n): _parents { vi(n) } {
+        REPEAT(i, n) {
+            _parents[i] = i;
+        }
+    }
+
+    // find the union of the given element `x`
+    int find(int x) {
+        if (_parents[x] != x) {
+            _parents[x] = find(_parents[x]);
+        }
+        return _parents[x];
+    }
+
+    // union given two elements
+    void unions(int x, int y) {
+        _rootx = find(x);
+        _rooty = find(y);
+        _parents[_rootx] = _rooty;
+    }
+
+public:
+    vi _parents;
+    int _rootx, _rooty;
+};
+
+// tag: union-find
+class Solution20231001 {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        const int n = isConnected.size();
+        UnionFind u(n);
+
+        REPEAT(i, n) {
+            REPEAT(j, n) {
+                if (isConnected[i][j] == 1) {
+                    u.unions(i, j);
+                }
+            }
+        }
+
+        set<int> s;
+        REPEAT(i, n) {
+            s.insert(u.find(i));
+        }
+
+        return s.size();
+    }
+};
+
 // tag: DFS
 class Solution {
 private:
@@ -145,16 +199,13 @@ public:
         _n = isConnected.size();
         
         REPEAT(i, _n) {
+            // visited
             if (isConnected[i][i] == -1) {
                 continue;
             }
-
-            if (isConnected[i][i] == 1) {
-                _islands++;
-                visitEntireIsland(isConnected, i, i);
-            } else {
-                isConnected[i][i] = -1;
-            }
+            
+            _islands++;
+            visitEntireIsland(isConnected, i, i);
         }
 
         return _islands;
