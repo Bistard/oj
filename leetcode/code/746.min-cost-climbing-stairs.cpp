@@ -172,6 +172,25 @@ public:
 
 #endif
 
+class Solution20231002 {
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        const int n = cost.size();
+
+        int first = cost[0];  // represent 2-step early min cost
+        int second = cost[1]; // represent 1-step early min cost
+        int curr = min(first, second);
+
+        for (int i = 2; i < n; i++) {
+            curr = min(first, second) + cost[i];
+            first = second;
+            second = curr;
+        }
+
+        return min(curr, min(first, second)); // extra min operation
+    }
+};
+
 class Solution {
 public:
     int minCostClimbingStairs(vector<int>& cost) {

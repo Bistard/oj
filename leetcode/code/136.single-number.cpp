@@ -199,6 +199,18 @@ ostream &operator<<(ostream &out, const unordered_map<K, V> &map) {
 
 #endif
 
+class Solution20231001 {
+public:
+    int singleNumber(vector<int>& nums) {
+        int num = 0;
+        for (auto v : nums) {
+            num ^= v;
+        }
+
+        return num;
+    }
+};
+
 // tag: bit manipulation - O(n)
 class Solution {
 public:
