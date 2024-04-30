@@ -14,6 +14,31 @@
  * int guess(int num);
  */
 
+class Solution20231003 {
+    public:
+    int guessNumber(int n) {
+        int l = 1, r = n;
+        int m;
+
+        while (l <= r) {
+            m = l + (r - l) / 2;
+
+            int res = guess(m);
+            if (res == 0) {
+                return m;
+            }
+
+            if (res == -1) {
+                r = m;
+            } else {
+                l = m + 1;
+            }
+        }
+        
+        return -1;
+    }
+};
+
 class Solution {
 public:
     int guessNumber(int n) {

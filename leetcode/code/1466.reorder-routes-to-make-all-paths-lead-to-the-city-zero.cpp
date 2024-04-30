@@ -210,6 +210,43 @@ struct CompareFn {
 
 #endif
 
+class Solution20231001 {
+public:
+    int minReorder(int n, vector<vector<int>>& connections) {
+        
+        vvi graph(n, vi {});
+        vb visited(n, false);
+
+        FOREACH(connection, connections) {
+            graph[connection[0]].push_back(connection[1]);  // forward dir
+            graph[connection[1]].push_back(-connection[0]); // backward dir
+        }
+
+        return dfs(graph, visited, 0); // starting from the city 0, looking outward.
+    }
+
+    int dfs(vvi &graph, vb &visited, int parent) {
+        visited[parent] = true;
+        int cnt = 0;
+
+        FOREACH(child, graph[parent]) {
+            if (visited[abs(child)]) {
+                continue;
+            }
+
+            // looking outward
+            if (child > 0) {
+                cnt++;
+            }
+
+            // still iterating the entire connections
+            cnt += dfs(graph, visited, abs(child));
+        }
+
+        return cnt;
+    }
+};
+
 // tag: DFS; time: O(n);
 class Solution {
 public:
